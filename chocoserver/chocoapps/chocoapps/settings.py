@@ -30,7 +30,7 @@ if DEBUG:
 else:
     DOMAIN = 'http://dchocolatier.in'
 
-ALLOWED_HOSTS = ['localhost', 'http://dchocolatier.in']
+ALLOWED_HOSTS = ['localhost', 'http://dchocolatier.in', '54.201.243.223']
 
 
 # Application definition
