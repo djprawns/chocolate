@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'easy_thumbnails',
     'image_cropping',
-    'django.contrib.sites'
+    # 'django.contrib.sites'
 ]
 
 MIDDLEWARE = [

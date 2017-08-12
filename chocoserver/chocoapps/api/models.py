@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 from image_cropping import ImageRatioField
-from django.contrib.sites.models import Site
+# from django.contrib.sites.models import Site
 
 # Create your models here.
 
