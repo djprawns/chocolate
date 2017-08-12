@@ -239,9 +239,11 @@ routerApp.controller('rootController', function($scope, globalVar) {
 
 routerApp.service('DataService', ["$http", "$q", function($http, $q) {
 
+    var domain = '54.201.243.223:8080'
+
     var _getCategories = function() {
         var deferred = $q.defer();
-        $http.get("http://localhost:8080/api/categories/")
+        $http.get("http://"+domain+"/api/categories/")
             .then(function(result) {
                 deferred.resolve(result);
             }, function() {
@@ -254,7 +256,7 @@ routerApp.service('DataService', ["$http", "$q", function($http, $q) {
         var deferred = $q.defer();
         // console.log(category_id);
         var config = { 'id': category_id };
-        $http.post("http://localhost:8080/api/products/", config)
+        $http.post("http://"+domain+"/api/products/", config)
             .then(function(result) {
                 deferred.resolve(result);
             }, function() {
@@ -267,7 +269,7 @@ routerApp.service('DataService', ["$http", "$q", function($http, $q) {
         var deferred = $q.defer();
         // console.log(category_id);
         // var config = { 'id': category_id };
-        $http.get("http://localhost:8080/api/about_us/")
+        $http.get("http://"+domain+"/api/about_us/")
             .then(function(result) {
                 deferred.resolve(result);
             }, function() {
