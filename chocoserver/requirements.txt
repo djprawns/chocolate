@@ -1,0 +1,12 @@
+Django==1.11.3
+django-appconf==1.0.1
+django-cors-headers==2.1.0
+django-filter==1.0.4
+django-image-cropping==1.0.4
+djangorestframework==3.6.3
+easy-thumbnails==2.4.1
+Markdown==2.6.8
+olefile==0.44
+Pillow==4.2.1
+pytz==2017.2
+six==1.10.0

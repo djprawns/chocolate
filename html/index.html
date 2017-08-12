@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>D'Chocolatier</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" media="screen" href="styles/style.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="styles/select_color.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="styles/red/red.css" class="changeme" />
+    <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="js/jquery.nivo.slider.pack.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/themecolorpicker.js"></script>
+    <script type="text/javascript" src="js/jquery.hoverIntent.minified.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="https://unpkg.com/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js"></script>
+    <script src="angular-slick.js"></script>
+    <style type="text/css">
+    button.slick-arrow.slick-next:before {
+        color: #711818;
+    }
+
+    button.slick-arrow.slick-prev:before {
+        color: #711818;
+    }
+    </style>
+    <script type="text/javascript" src="js/app.js"></script>
+</head>
+
+<body ng-app='chocolateApp' ng-controller="rootController" ng-cloak>
+    <div id="header-wrap">
+        <div id="header">
+        </div>
+    </div>
+    <div class="wrap">
+        <div class="inner-wrap">
+            <div ng-include="'sidenav.html'"></div>
+            <div id="content">
+                <div ui-view></div>
+            </div>
+        </div>
+    </div>
+    <div ng-include="'footer.html'"></div>
+</body>
+
+</html>

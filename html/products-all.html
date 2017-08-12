@@ -1,0 +1,19 @@
+<style type="text/css">
+.galery ul li {
+    padding-top: 10px;
+}
+</style>
+<div class="galery">
+    <ul id="list">
+        <li class="pat" data-id="id-1" ng-repeat="category in categories">
+            <div class="actual">
+                <!-- <h6>Patiserie</h6> -->
+                <h4>{{category.name}}</h4>
+                <div class="cake-tumb">
+                    <a class="group1" ui-sref="gallery.product({categoryId: {{category.id}}})" title="">
+                    <img src="{{category.photo}}" alt="" style="height: 131px; width: 205px;"/></a>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>

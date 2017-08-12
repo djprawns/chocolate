@@ -1,0 +1,37 @@
+<style type="text/css">
+.galery-menu ul {
+    padding: 0;
+    width: 100%;
+}
+
+.galery-menu ul li {
+    font-size: 13.4px;
+}
+
+.galery-menu ul li a.active{
+    color: #C37100;
+}
+</style>
+<h2 class="float-left page-name-gal">Our Products</h2>
+<div class="dashed-border-galery float-left"></div>
+<div class="galery-menu">
+    <ul class="splitter">
+        <li class="segment-1 selected-1"><a ui-sref="gallery.all" data-value="all" ng-class="{'active': activeCategory.id === 0}">All</a></li>
+        <li class="segment-{{$index}}" ng-repeat="category in categories track by $index">
+            <a ui-sref=".product({categoryId: {{category.id}}})" data-value="sandw" ng-class="{'active': activeCategory.id === {{category.id}}}">{{category.name}}</a>
+        </li>
+    </ul>
+</div>
+
+<div ui-view></div>
+
+<!-- <div class="pagination">
+    <a href="#" class="previous">Previous</a>
+    <ul>
+        <li><a href="#" class="current">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+    </ul>
+    <a href="#" class="next">Next</a>
+</div> -->
+<!-- end pagination -->
