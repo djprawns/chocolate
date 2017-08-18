@@ -26,9 +26,9 @@ SECRET_KEY = 'r&=0z9r!-5(b=%^lc9uws9li90lp@8hozrfu$01y4xypom%+ny'
 DEBUG = True
 
 # if DEBUG:
-#     DOMAIN = 'http://localhost:8080'
+DOMAIN = 'http://localhost:8080'
 # else:
-DOMAIN = 'http://54.201.243.223:8080'
+# DOMAIN = 'http://54.201.243.223:8080'
 
 ALLOWED_HOSTS = ['localhost', 'http://dchocolatier.in', '54.201.243.223']
 

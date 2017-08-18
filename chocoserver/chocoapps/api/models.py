@@ -89,3 +89,38 @@ class AboutU(SingletonModel):
 
     def __str__(self):
         return self.title
+
+
+class DivyaSawhney(SingletonModel):
+    title = models.CharField(max_length=8000, blank=True)
+    description = models.TextField(max_length=8000)
+    photo = models.ImageField(upload_to='media/', default='media/None/no-img.jpg', blank=True, null=True)
+
+    def __str__(self):
+        return self.title
+
+
+class Home(SingletonModel):
+    title = models.CharField(max_length=8000, blank=True)
+    description = models.TextField(max_length=8000)
+    photo1 = models.ImageField(upload_to='media/', default='media/None/no-img.jpg', blank=True, null=True)
+    photo2 = models.ImageField(upload_to='media/', default='media/None/no-img.jpg', blank=True, null=True)
+    photo3 = models.ImageField(upload_to='media/', default='media/None/no-img.jpg', blank=True, null=True)
+    photo4 = models.ImageField(upload_to='media/', default='media/None/no-img.jpg', blank=True, null=True)
+    photo5 = models.ImageField(upload_to='media/', default='media/None/no-img.jpg', blank=True, null=True)
+    photo6 = models.ImageField(upload_to='media/', default='media/None/no-img.jpg', blank=True, null=True)
+    photo7 = models.ImageField(upload_to='media/', default='media/None/no-img.jpg', blank=True, null=True)
+    photo8 = models.ImageField(upload_to='media/', default='media/None/no-img.jpg', blank=True, null=True)
+
+    def __str__(self):
+        return self.title
+
+
+class News(models.Model):
+    title = models.CharField(max_length=8000)
+    description = models.TextField(max_length=8000)
+    photo = models.ImageField(upload_to='media/', default='media/None/no-img.jpg', blank=True, null=True)
+
+    def __str__(self):
+        return self.title
+

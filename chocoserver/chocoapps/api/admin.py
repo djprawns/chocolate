@@ -5,7 +5,7 @@ from django.contrib import admin
 
 # Register your models here.
 
-from models import ProductCategorie, Product, Location, ContactNumber, AboutU
+from models import ProductCategorie, Product, Location, ContactNumber, AboutU, DivyaSawhney, Home, News
 
 # from image_cropping import ImageCroppingMixin
 #
@@ -28,3 +28,6 @@ admin.site.register(Product)
 admin.site.register(Location)
 admin.site.register(ContactNumber)
 admin.site.register(AboutU, YourModelAdmin)
+admin.site.register(DivyaSawhney, YourModelAdmin)
+admin.site.register(Home)
+admin.site.register(News)

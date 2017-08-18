@@ -30,12 +30,30 @@ routerApp.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
         .state('home', {
             url: '/home',
             templateUrl: 'home.html',
-            controller: function($scope) {
+            controller: function($scope, DataService) {
                 //====================================
                 // Slick 1
                 //====================================
                 $scope.number1 = [1, 2, 3, 4, 5, 6, 7, 8];
-                $scope.slickConfig1Loaded = true;
+                $scope.homePhotos = [];
+
+                var promise = DataService.getHomePhotos()
+                promise.then(function(result) {
+                    angular.forEach(result.data[0], function (value, key) {
+                        $scope.homePhotos.push({'photo': value})
+                    })
+                    $scope.slickConfig1Loaded = true;
+                }, function(error) {
+                    console.log(error);
+                });
+
+                var promise = DataService.getHomeDesc()
+                promise.then(function(result) {
+                    $scope.homedesc = result.data[0].description;
+                }, function(error) {
+                    console.log(error);
+                });
+
                 $scope.updateNumber1 = function() {
                     $scope.slickConfig1Loaded = false;
                     $scope.number1[2] = '123';
@@ -47,10 +65,10 @@ routerApp.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
                 $scope.slickCurrentIndex = 0;
                 $scope.slickConfig = {
                     dots: true,
-                    // autoplay: true,
-                    initialSlide: 3,
+                    autoplay: true,
+                    initialSlide: 0,
                     infinite: true,
-                    autoplaySpeed: 1000,
+                    autoplaySpeed: 4000,
                     method: {},
                     event: {
                         beforeChange: function(event, slick, currentSlide, nextSlide) {
@@ -95,7 +113,52 @@ routerApp.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
 
         .state('events', {
             url: '/events',
-            templateUrl: 'events.html'
+            abstract: true,
+            // templateUrl: 'events.html',
+            controller: function($scope, DataService) {
+                // $scope.inEvents = true;
+                var promise = DataService.getNews()
+                promise.then(function(result) {
+                    $scope.events = result.data;
+                    // console.log($scope.events);
+                    // $scope.about_url = result.data.photo;
+                }, function(error) {
+                    console.log(error);
+                });
+            }
+        })
+
+        .state('events.all', {
+            url: '/all',
+            templateUrl: 'events.html',
+            controller: function($scope, DataService) {
+                // $scope.inEvents = true;
+                // var promise = DataService.getNews()
+                // promise.then(function(result) {
+                //     $scope.events = result.data;
+                //     // console.log($scope.events);
+                //     // $scope.about_url = result.data.photo;
+                // }, function(error) {
+                //     console.log(error);
+                // });
+            }
+        })
+
+        .state('events.event', {
+            url: '/event/:eventId',
+            templateUrl: 'event.html',
+            controller: function($scope, DataService, $stateParams) {
+                // console.log($stateParams);
+                // $scope.$parent.inEvents = false;
+                var promise = DataService.getNewsItem($stateParams.eventId)
+                promise.then(function(result) {
+                    $scope.post = result.data[0];
+                    // console.log($scope.events);
+                    // $scope.about_url = result.data.photo;
+                }, function(error) {
+                    console.log(error);
+                });
+            }
         })
 
         .state('blog', {
@@ -117,23 +180,19 @@ routerApp.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
             }
         })
 
-        // .state('gallery', {
-        //     url: '/gallery',
-        //     templateUrl: 'gallery.html',
-        //     controller: function($scope, DataService) {
-        //         console.log('in home');
-        //         var promise = DataService.getCategories()
-        //         promise.then(function(result) {
-        //             $scope.categories = result.data;
-        //             $scope.categories.forEach(function(category) {
-        //                 category.active = false;
-        //             });
-        //             $scope.activeCategory = { 'id': 0, 'name': 'All' };
-        //         }, function(error) {
-        //             console.log(error);
-        //         });
-        //     }
-        // })
+        .state('divya', {
+            url: '/divya',
+            templateUrl: 'divya.html',
+            controller: function($scope, DataService) {
+                var promise = DataService.getDivya()
+                promise.then(function(result) {
+                    $scope.divya = result.data[0];
+                    
+                }, function(error) {
+                    console.log(error);
+                });
+            }
+        })
 
         .state('gallery', {
             url: '/gallery',
@@ -239,7 +298,8 @@ routerApp.controller('rootController', function($scope, globalVar) {
 
 routerApp.service('DataService', ["$http", "$q", function($http, $q) {
 
-    var domain = '54.201.243.223:8080'
+    // var domain = '54.201.243.223:8080'
+    var domain = 'localhost:8080'
 
     var _getCategories = function() {
         var deferred = $q.defer();
@@ -278,9 +338,79 @@ routerApp.service('DataService', ["$http", "$q", function($http, $q) {
         return deferred.promise;
     }
 
+    var _getDivya = function() {
+        var deferred = $q.defer();
+        // console.log(category_id);
+        // var config = { 'id': category_id };
+        $http.get("http://"+domain+"/api/divya/")
+            .then(function(result) {
+                deferred.resolve(result);
+            }, function() {
+                deferred.reject();
+            });
+        return deferred.promise;
+    }
+
+    var _getHomePhotos = function() {
+        var deferred = $q.defer();
+        // console.log(category_id);
+        // var config = { 'id': category_id };
+        $http.get("http://"+domain+"/api/home/")
+            .then(function(result) {
+                deferred.resolve(result);
+            }, function() {
+                deferred.reject();
+            });
+        return deferred.promise;
+    }
+
+    var _getHomeDesc = function() {
+        var deferred = $q.defer();
+        // console.log(category_id);
+        // var config = { 'id': category_id };
+        $http.get("http://"+domain+"/api/home_desc/")
+            .then(function(result) {
+                deferred.resolve(result);
+            }, function() {
+                deferred.reject();
+            });
+        return deferred.promise;
+    }
+
+    var _getNews = function() {
+        var deferred = $q.defer();
+        // console.log(category_id);
+        // var config = { 'id': category_id };
+        $http.get("http://"+domain+"/api/news/")
+            .then(function(result) {
+                deferred.resolve(result);
+            }, function() {
+                deferred.reject();
+            });
+        return deferred.promise;
+    }
+
+    var _getEvent = function(event_id) {
+        var deferred = $q.defer();
+        // console.log(category_id);
+        var config = { 'id': event_id };
+        $http.post("http://"+domain+"/api/news_item/", config)
+            .then(function(result) {
+                deferred.resolve(result);
+            }, function() {
+                deferred.reject();
+            });
+        return deferred.promise;
+    }
+
     return {
         getCategories: _getCategories,
         getProducts: _getProducts,
-        getAboutUs: _getAboutUs
+        getAboutUs: _getAboutUs,
+        getDivya: _getDivya,
+        getHomePhotos: _getHomePhotos,
+        getHomeDesc: _getHomeDesc,
+        getNews: _getNews,
+        getNewsItem: _getEvent
     }
 }])
