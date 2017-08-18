@@ -298,8 +298,8 @@ routerApp.controller('rootController', function($scope, globalVar) {
 
 routerApp.service('DataService', ["$http", "$q", function($http, $q) {
 
-    // var domain = '54.201.243.223:8080'
-    var domain = 'localhost:8080'
+    var domain = '54.201.243.223:8080'
+    // var domain = 'localhost:8080'
 
     var _getCategories = function() {
         var deferred = $q.defer();
